@@ -22,6 +22,12 @@ public class ArrayOperations {
      */
 
     public void print() {
+    	for(int elem:numbers) {
+    		System.out.println(elem);
+    	}
+    	for(int elem:unsorted) {
+    		System.out.println(elem);
+    	}
         
     }
 
@@ -30,21 +36,54 @@ public class ArrayOperations {
      * @see <a href="sorting algortihms">http://faculty.cs.niu.edu/~hutchins/csci241/sorting.htm</a>
      */
     public int[] sort() {
-       return null;
+    	int temp;
+    	for (int i=0; i<(numbers.length-1); i++){
+            if(numbers[i]>numbers[i+1]){
+                
+                for(int j=i; j>=0;j--){
+                    if(numbers[j]>numbers[j+1]){
+                        temp=numbers[j];
+                        numbers[j]=numbers[j+1];
+                        numbers[j+1]=temp;
+                    }
+                }
+            }
+    	}
+       return numbers;
     }
 
     /**
      * @return the sorted array in reverse order
      */
     public int[] revertSort() {
-        return null;
+    	int temp;
+    	for (int i=0; i<(numbers.length-1); i++){
+            if(numbers[i]<numbers[i+1]){
+                
+                for(int j=i; j>=0;j--){
+                    if(numbers[j]<numbers[j+1]){
+                        temp=numbers[j];
+                        numbers[j]=numbers[j+1];
+                        numbers[j+1]=temp;
+                    }
+                }
+            }
+
+        }
+        return numbers;
     }
 
     /**
      * @return the unsorted array in reverted order.
      */
     public int[] reverted() {
-        return null;
+    	int[] arr = new int[unsorted.length];
+    	for(int i=0; i<arr.length;i++) {
+    		arr[arr.length-i-1]=unsorted[i];
+    	}
+    	
+    	
+        return arr;
     }
 
     /**
@@ -52,35 +91,77 @@ public class ArrayOperations {
      * @return true if the array contains the value, false otherwise.
      */
     public boolean contains(int value) {
-        return false;
+    	boolean check = false;
+    	for(int i=0;i<numbers.length;i++) {
+    		if(numbers[i]==value) {
+    			check=true;
+    			break;
+    		}
+    	}
+        return check;
     }
 
     /**
      * @return the average value of all elements summed up.
      */
     public double average() {
-        return 0.0;
+    	double average=0.0;
+    	for(int elem:numbers) {
+    		average=average+elem;
+    	}
+    	average=average/numbers.length;
+        return average;
     }
 
     /**
      * @return the average value of all elements summed up, but without the highest and the lowest value.
      */
     public double trimmedMean() {
-        return 0.0;
+        double mean=0.0;
+    	int temp;
+    	for (int i=0; i<(numbers.length-1); i++){
+            if(numbers[i]>numbers[i+1]){
+                
+                for(int j=i; j>=0;j--){
+                    if(numbers[j]>numbers[j+1]){
+                        temp=numbers[j];
+                        numbers[j]=numbers[j+1];
+                        numbers[j+1]=temp;
+                    }
+                }
+            }
+    	}
+    	for(int i=1; i<(numbers.length-1);i++) {
+    		mean=mean+numbers[i];
+    	}
+    	mean=mean/(numbers.length-2);
+    	return mean;
     }
 
     /**
      * @return the max value of the array. In the array [1,9,3] max would be 9.
      */
     public int maxValue() {
-        return 0;
+    	int max=numbers[0];
+    	for(int i=0; i<numbers.length;i++) {
+    		if(numbers[i]>max) {
+    			max=numbers[i];
+    		}
+    	}
+        return max;
     }
 
     /**
      * @return the min value of the array. In the array [1,9,3] min would be 1.
      */
     public int minValue() {
-        return 0;
+    	int min=numbers[0];
+    	for(int i=0; i<numbers.length;i++) {
+    		if(numbers[i]<min) {
+    			min=numbers[i];
+    		}
+    	}
+        return min;
     }
 
     /* **********************************************************
